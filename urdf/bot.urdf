@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<robot name="bot">
+    <!-- define colors -->
+    <material name="blue">
+        <color rgba="0 0 0.8 1" />
+    </material>
+    <material name="black">
+        <color rgba="0 0 0 1" />
+    </material>
+    <material name="white">
+        <color rgba="1 1 1 1" />
+    </material>
+    <material name="purple">
+        <color rgba="0.3098 0.1765 0.4980 1" />
+    </material>
+
+    <link name="base_link">
+        <visual>
+            <geometry>
+                <box size="0.4 0.2 0.1" />
+            </geometry>
+            <material name="white" />
+        </visual>
+
+        <collision>
+            <geometry>
+                <box size="0.4 0.2 0.1" />
+            </geometry>
+        </collision>
+        >
+        <inertial>
+            <mass value="1" />
+            <inertia ixx="0.0042" ixy="0.0" ixz="0.0" iyy="0.0142" iyz="0.0" izz="0.0167" />
+        </inertial>
+    </link>
+
+    <joint name="base_to_left_wheel" type="continuous">
+        <parent link="base_link" />
+        <child link="left_wheel" />
+        <origin rpy="1.5707963267948966 0 0" xyz="0.1 0.13 0" />
+        <axis rpy="0 0 0" xyz="0 0 1" />
+    </joint>
+
+    <link name="left_wheel">
+        <visual>
+            <geometry>
+                <cylinder length="0.05" radius="0.1" />
+            </geometry>
+            <material name="black" />
+        </visual>
+    </link>
+
+    <joint name="base_to_right_wheel" type="continuous">
+        <parent link="base_link" />
+        <child link="right_wheel" />
+        <origin rpy="1.5707963267948966 0 0" xyz="0.1 -0.13 0" />
+        <axis rpy="0 0 0" xyz="0 0 1" />
+    </joint>
+
+    <link name="right_wheel">
+        <visual>
+            <geometry>
+                <cylinder length="0.05" radius="0.1" />
+            </geometry>
+            <material name="black" />
+        </visual>
+    </link>
+
+    <joint name="base_to_caster" type="fixed">
+        <parent link="base_link" />
+        <child link="caster" />
+        <origin xyz="-0.15 0 -0.05" />
+    </joint>
+
+    <link name="caster">
+        <visual>
+            <geometry>
+                <sphere radius="0.05" />
+            </geometry>
+            <material name="purple" />
+        </visual>
+    </link>
+</robot>
