@@ -174,12 +174,11 @@
     <!-- differential_drive_controller plugin -->
     <gazebo>
         <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
-            <ros>
-                <!-- Set namespace -->
+            <!-- <ros>
                 <namespace>/bot</namespace>
-                <!-- <argument>cmd_vel:=cmd_demo</argument>
-                <argument>odom:=odom_demo</argument> -->
-            </ros>
+                <argument>cmd_vel:=cmd_demo</argument>
+                <argument>odom:=odom_demo</argument>
+            </ros> -->
             <update_rate>100</update_rate>
             <left_joint>base_to_left_wheel</left_joint>
             <right_joint>base_to_right_wheel</right_joint>
