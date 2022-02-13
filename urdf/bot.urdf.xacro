@@ -116,14 +116,14 @@
     <link name="base_footprint" />
 
     <!-- Wheels -->
-    <xacro:wheel prefix="left_whleel" y_reflect="1" />
+    <xacro:wheel prefix="left_wheel" y_reflect="1" />
     <gazebo reference="left_wheel_link">
         <mu1>1.0</mu1>
         <mu2>1.0</mu2>
         <material>Gazebo/Black</material>
     </gazebo>
 
-    <xacro:wheel prefix="right_whleel" y_reflect="-1" />
+    <xacro:wheel prefix="right_wheel" y_reflect="-1" />
     <gazebo reference="right_wheel_link">
         <mu1>1.0</mu1>
         <mu2>1.0</mu2>
