@@ -13,6 +13,15 @@
     <material name="purple">
         <color rgba="0.3098 0.1765 0.4980 1" />
     </material>
+    <material name="orange">
+        <color rgba="1 0.6471 0 1" />
+    </material>
+    <material name="navy">
+        <color rgba="0 0 0.5 1" />
+    </material>
+    <material name="gray">
+        <color rgba="0.5 0.5 0.5 1" />
+    </material>
 
     <!-- Define robot constants -->
     <!-- pi -->
@@ -71,7 +80,7 @@
                 <geometry>
                     <cylinder radius="${wheel_radius}" length="${wheel_width}" />
                 </geometry>
-                <material name="black" />
+                <material name="navy" />
             </visual>
 
             <collision>
@@ -91,7 +100,7 @@
             <geometry>
                 <box size="${base_width} ${base_depth} ${base_height}" />
             </geometry>
-            <material name="white" />
+            <material name="orange" />
         </visual>
 
         <collision>
@@ -103,7 +112,7 @@
         <xacro:box_inertia m="${base_mass}" w="${base_width}" d="${base_depth}" h="${base_height}" />
     </link>
     <gazebo reference="base_link">
-        <material>Gazebo/White</material>
+        <material>Gazebo/Wood</material>
     </gazebo>
 
     <!-- Robot Footprint -->
@@ -120,14 +129,14 @@
     <gazebo reference="left_wheel_link">
         <mu1>1.0</mu1>
         <mu2>1.0</mu2>
-        <material>Gazebo/Black</material>
+        <material>Gazebo/Blue</material>
     </gazebo>
 
     <xacro:wheel prefix="right_wheel" y_reflect="-1" />
     <gazebo reference="right_wheel_link">
         <mu1>1.0</mu1>
         <mu2>1.0</mu2>
-        <material>Gazebo/Black</material>
+        <material>Gazebo/Blue</material>
     </gazebo>
 
     <!-- Caster ball -->
@@ -142,7 +151,7 @@
             <geometry>
                 <sphere radius="${caster_radius}" />
             </geometry>
-            <material name="purple" />
+            <material name="gray" />
         </visual>
 
         <collision>
@@ -156,7 +165,7 @@
     <gazebo reference="caster">
         <mu1>0.0</mu1>
         <mu2>0.0</mu2>
-        <material>Gazebo/Purple</material>
+        <material>Gazebo/Gray</material>
     </gazebo>
 
     <!-- differential_drive_controller plugin -->
