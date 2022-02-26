@@ -46,6 +46,12 @@
     <xacro:property name="lidar_height" value="0.02" />
     <xacro:property name="lidar_zoff" value="0.03" />
     <xacro:property name="lidar_mass" value="0.17" />
+    <!-- imu properties -->
+    <xacro:property name="imu_width" value="0.02" />
+    <xacro:property name="imu_depth" value="0.015" />
+    <xacro:property name="imu_height" value="0.001" />
+    <xacro:property name="imu_mass" value="0.002" />
+
 
     <!-- Define intertial property macros  -->
     <xacro:macro name="box_inertia" params="m w d h">
@@ -107,14 +113,11 @@
             </geometry>
             <material name="orange" />
         </visual>
-
         <collision>
             <geometry>
                 <box size="${base_width} ${base_depth} ${base_height}" />
             </geometry>
         </collision>
-
-        <xacro:box_inertia m="${base_mass}" w="${base_width}" d="${base_depth}" h="${base_height}" />
     </link>
     <gazebo reference="base_link">
         <material>Gazebo/Wood</material>
@@ -128,6 +131,17 @@
     </joint>
 
     <link name="base_footprint" />
+
+    <!-- Base Inertial -->
+    <joint name="base_inertial_joint" type="fixed">
+        <parent link="base_link" />
+        <child link="base_inertial" />
+        <origin xyz="0 0 0" rpy="0 0 0" />
+    </joint>
+
+    <link name="base_inertial">
+        <xacro:box_inertia m="${base_mass}" w="${base_width}" d="${base_depth}" h="${base_height}" />
+    </link>
 
     <!-- Wheels -->
     <xacro:wheel prefix="left_wheel" y_reflect="1" />
@@ -231,6 +245,28 @@
             </plugin>
         </sensor>
     </gazebo>
+
+    <!-- imu -->
+    <joint name="imu_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="imu_link"/>
+        <origin xyz="${base_width/4} 0 ${(base_height+imu_height)/2}"/>
+    </joint>
+
+    <link name="imu_link">
+        <visual>
+            <geometry>
+                <box size="${imu_width} ${imu_depth} ${imu_height}"/>
+            </geometry>
+            <material name="purple" />
+        </visual>
+        <collision>
+            <geometry>
+                <box size="${imu_width} ${imu_depth} ${imu_height}"/>
+            </geometry>
+        </collision>
+        <xacro:box_inertia m="${imu_mass}" w="${imu_width}" d="${imu_depth}" h="${imu_height}" />
+    </link>
 
     <!-- differential_drive_controller plugin -->
     <gazebo>
